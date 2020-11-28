@@ -80,8 +80,9 @@ const fs = require('fs');
     outputJSON.posts.push(post);
   });
 
-  fs.writeFileSync('insta-event.json', JSON.stringify(outputJSON));
-  //console.debug(outputJSON);
+  if (outputJSON.cntHashTag > 0 && outputJSON.posts.length > 0) {
+    fs.writeFileSync('insta-event.json', JSON.stringify(outputJSON));
+  }
 
   await browser.close();
 })();
