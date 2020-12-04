@@ -56,7 +56,7 @@ function getJSONData(filename) {
     await page.focus('input[name="password"]');
     await page.keyboard.type(process.env.INSTA_PWD);
     await page.click('button[type="submit"]');
-    await new Promise(r => setTimeout(r, 3000));
+    await new Promise(r => setTimeout(r, 5000));
   } catch (err) {
     console.error('로그인 과정 에러!!!', err);
     return false;
@@ -102,7 +102,7 @@ function getJSONData(filename) {
     console.error('정보추출 에러!!!', err);
   }
 
-  if (outputJSON.cntHashTag >= 0 && outputJSON.posts.length >= 0) {
+  if (outputJSON.cntHashTag > 0 && outputJSON.posts.length > 0) {
     fs.writeFileSync('insta-event.json', JSON.stringify(outputJSON));
   }
 
