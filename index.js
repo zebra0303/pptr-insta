@@ -83,6 +83,8 @@ function getJSONData(filename) {
     const jsonDataAccount = getJSONData('insta-account.json');
     jsonDataAccount.graphql.user.edge_owner_to_timeline_media.edges.map(edge => {
       const node = edge.node;
+      const caption = node.edge_media_to_caption.edges.length > 0
+        ? node.edge_media_to_caption.edges[0].node.text : '';
       const post = {
         thumbnail: {
           src: node.thumbnail_src,
@@ -92,7 +94,7 @@ function getJSONData(filename) {
           // '480x480': node.thumbnail_resources[3].src,
           '640x640': node.thumbnail_resources[4].src
         },
-        caption: node.edge_media_to_caption.edges[0].node.text,
+        caption,
         link: `https://www.instagram.com/p/${node.shortcode}/`
       };
 
