@@ -59,6 +59,7 @@ function getJSONData(filename) {
     await new Promise(r => setTimeout(r, 5000));
   } catch (err) {
     console.error('로그인 과정 에러!!!', err);
+    await browser.close();
     return false;
   }
 
